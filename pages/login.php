@@ -13,7 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Connection failed: " . mysqli_connect_error());
     }
 
-
     // Prepare the SQL query to fetch the user data based on the username
     $query_members = "SELECT * FROM members WHERE name = '$username'";
     $query_librarians = "SELECT * FROM librarians WHERE name = '$username'";
@@ -61,20 +60,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="../styling/css/login.css">
 </head>
 <body>
-    <h1>Login</h1>
-    <?php if (isset($error_message)): ?>
-        <p class="error"><?php echo $error_message; ?></p>
-    <?php endif; ?>
-    <form action="" method="post">
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username" required><br>
+    <div class="container">
+        <div class="form-container">
+            <h1>Login</h1>
+            <?php if (isset($error_message)): ?>
+                <p class="error"><?php echo $error_message; ?></p>
+            <?php endif; ?>
+            <form action="" method="post">
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" required>
 
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" required><br>
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" required>
 
-        <input type="submit" value="Login">
-    </form>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

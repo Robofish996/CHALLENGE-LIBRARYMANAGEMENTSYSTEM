@@ -53,29 +53,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <link rel="stylesheet" type="text/css" href="../styling/css/register.css">
 </head>
 <body>
-    <h1>Register</h1>
-    <?php if (isset($error_message)): ?>
-        <p class="error"><?php echo $error_message; ?></p>
-    <?php endif; ?>
-    <form action="" method="post">
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username" required><br>
+    <div class="container">
+        <div class="form-container">
+            <h1>Register</h1>
+            <?php if (isset($error_message)): ?>
+                <p class="error"><?php echo $error_message; ?></p>
+            <?php endif; ?>
+            <form action="" method="post">
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" required>
 
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="email" required><br>
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" required>
 
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" required><br>
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" required>
 
-        <label for="role">Role:</label>
-        <select name="role" id="role" required>
-            <option value="member">Member</option>
-            <option value="librarian">Librarian</option>
-        </select><br>
-
-        <input type="submit" value="Register">
-    </form>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
+
