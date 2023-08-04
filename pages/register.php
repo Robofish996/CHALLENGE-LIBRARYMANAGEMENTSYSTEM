@@ -1,5 +1,5 @@
 <?php
-// Handle form submission for registration
+//registration values
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $email = $_POST['email'];
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($result) {
             // Registration successful, redirect the user to login.php
-            header("Location: login.php");
+            header("Location: ../pages/login.php");
             exit();
         } else {
             // Registration failed, show an error message
@@ -56,6 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" type="text/css" href="../styling/css/register.css">
 </head>
 <body>
+   
     <div class="container">
         <div class="form-container">
             <h1>Register</h1>
@@ -72,10 +73,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="password">Password:</label>
                 <input type="password" name="password" id="password" required>
 
+                <label for="role">Role:</label>
+                <select name="role" id="role" required>
+                    <option value="member">Member</option>
+                    <option value="librarian">Librarian</option>
+                </select>
+
                 <button type="submit">Register</button>
             </form>
         </div>
     </div>
 </body>
 </html>
-

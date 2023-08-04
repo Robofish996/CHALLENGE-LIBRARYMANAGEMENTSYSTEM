@@ -13,7 +13,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-image: url("../images/libDefault.jpg");
+    background-image: url("../images/backgroundImgs/libDefault.jpg");
     background-size: cover;
     background-position: center;
 }

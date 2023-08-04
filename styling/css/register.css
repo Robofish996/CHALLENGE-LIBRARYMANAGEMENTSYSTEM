@@ -16,7 +16,8 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url("../images/registerDefault.jpg");
+    background-image: url("../images/backgroundImgs/registerDefault.jpg");
+
     background-size: cover;
 }
 
@@ -48,6 +49,13 @@ label {
 input[type="text"],
 input[type="email"],
 input[type="password"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+select {
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Handle form submission for login
+//Login values
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -25,9 +25,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = ($result_members && mysqli_num_rows($result_members) === 1) ? mysqli_fetch_assoc($result_members) : mysqli_fetch_assoc($result_librarians);
 
         if (password_verify($password, $user['password'])) {
-            // Username and password are correct, store the username and role in the session
+            // Username and password are correct, store the username, role, user ID, and email in the session
             $_SESSION['username'] = $username;
             $_SESSION['role'] = $user['role'];
+            $_SESSION['user_id'] = $user['id']; 
+            $_SESSION['email'] = $user['email']; 
 
             // Redirect the user based on their role
             if ($user['role'] === 'member') {
