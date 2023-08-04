@@ -19,6 +19,34 @@ $userRole = $_SESSION['role'];
 
 $sessionData = $_SESSION;
 
+// Check if the form was submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get form data
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the password
+
+    // Database connection (include your connection code here)
+    $connection = mysqli_connect('localhost', 'Mathew', 'mysql@123', 'crestlibrary');
+    if (!$connection) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+
+    // Insert new librarian record
+    $query = "INSERT INTO librarians (name, email, password, role) VALUES ('$name', '$email', '$password', 'librarian')";
+    $result = mysqli_query($connection, $query);
+
+    // Check for errors
+    if (!$result) {
+        die("Query failed: " . mysqli_error($connection));
+    }
+
+    // Close the database connection
+    mysqli_close($connection);
+
+    // Show an alert message
+    echo "<script>alert('User added successfully!');</script>";
+}
 
 
 
@@ -65,7 +93,7 @@ $sessionData = $_SESSION;
             <i class="fas fa-file-alt"></i>
             <h3>View Orders of a User</h3>
         </a>
-        <a class="tile" href="add_librarian.php">
+        <a class="tile" href="addLibrarian.php">
             <i class="fas fa-user-plus"></i>
             <h3>Add a New Librarian</h3>
         </a>

@@ -4,7 +4,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $role = $_POST['role'];
 
     // Hash the password
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -16,29 +15,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Connection failed: " . mysqli_connect_error());
     }
 
-    // Prepare the SQL query to insert the user data into the appropriate table based on the selected role
-    if ($role === 'member') {
-        $table = 'members';
-    } elseif ($role === 'librarian') {
-        $table = 'librarians';
+    // Insert user data into the members table with the role set to 'member'
+    $query = "INSERT INTO members (name, email, password, role) VALUES ('$username', '$email', '$hashed_password', 'member')";
+    $result = mysqli_query($connection, $query);
+
+    if ($result) {
+        // Registration successful, redirect the user to login.php
+        header("Location: ../pages/login.php");
+        exit();
     } else {
-        // Invalid role selected, show an error message
-        $error_message = "Invalid role selected. Please try again.";
-    }
-
-    if (!isset($error_message)) {
-        // SQL query to insert user data into the specified table
-        $query = "INSERT INTO $table (name, email, password, role) VALUES ('$username', '$email', '$hashed_password', '$role')";
-        $result = mysqli_query($connection, $query);
-
-        if ($result) {
-            // Registration successful, redirect the user to login.php
-            header("Location: ../pages/login.php");
-            exit();
-        } else {
-            // Registration failed, show an error message
-            $error_message = "Error: Unable to register. Please try again.";
-        }
+        // Registration failed, show an error message
+        $error_message = "Error: Unable to register. Please try again.";
     }
 
     // Close the database connection
@@ -72,12 +59,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <label for="password">Password:</label>
                 <input type="password" name="password" id="password" required>
-
-                <label for="role">Role:</label>
-                <select name="role" id="role" required>
-                    <option value="member">Member</option>
-                    <option value="librarian">Librarian</option>
-                </select>
 
                 <button type="submit">Register</button>
             </form>
