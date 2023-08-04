@@ -59,9 +59,9 @@ $sessionData = $_SESSION;
         </a>
         <a class="tile" href="removeBook.php">
             <i class="fas fa-book"></i>
-            <h3>Remove a Book</h3>
+            <h3>Remove/Add a Book</h3>
         </a>
-        <a class="tile" href="view_orders.php">
+        <a class="tile" href="usersOrders.php">
             <i class="fas fa-file-alt"></i>
             <h3>View Orders of a User</h3>
         </a>
