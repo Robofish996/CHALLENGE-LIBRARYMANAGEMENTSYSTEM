@@ -24,7 +24,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // User found in either members or librarians table
         $user = ($result_members && mysqli_num_rows($result_members) === 1) ? mysqli_fetch_assoc($result_members) : mysqli_fetch_assoc($result_librarians);
 
-        if (password_verify($password, $user['password'])) {
+        if ($user['role'] === 'blocked') {
+            // User is blocked, show an error message
+            $error_message = "You have been blocked. Please contact the administrator for further assistance.";
+        } elseif(password_verify($password, $user['password'])) {
             // Username and password are correct, store the username, role, user ID, and email in the session
             $_SESSION['username'] = $username;
             $_SESSION['role'] = $user['role'];
