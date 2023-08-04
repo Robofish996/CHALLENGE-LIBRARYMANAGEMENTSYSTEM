@@ -141,9 +141,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['checkout'])) {
             while ($row = mysqli_fetch_assoc($result_books)) {
                 echo '<div class="book-card">';
 
-                $image_path = $row['image_path'];
-                if (!empty($image_path)) {
-                    echo '<img src="' . $image_path . '" alt="' . $row['book_title'] . '">';
+                if (!empty($row['image_path'])) {
+                    echo '<img src="' . $row['image_path'] . '" alt="' . $row['book_title'] . '">';
                 }
                 echo '<h2>' . $row['book_title'] . '</h2>';
                 echo '<p>Author: ' . $row['author'] . '</p>';
@@ -155,11 +154,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['checkout'])) {
                     echo '<button type="submit" name="remove_from_cart" value="' . $row['book_id'] . '">Remove from Cart</button>';
                     echo '</form>';
                 } else {
-                    echo '<form method="post">';
-                    echo '<input type="hidden" name="book_id" value="' . $row['book_id'] . '">';
-                    echo '<button type="submit" name="add_to_cart">Add to Cart</button>';
-                    echo '</form>';
+                    if ($row['status'] === 'Available') {
+                        echo '<form method="post">';
+                        echo '<input type="hidden" name="book_id" value="' . $row['book_id'] . '">';
+                        echo '<button type="submit" name="add_to_cart">Add to Cart</button>';
+                        echo '</form>';
+                    } else {
+                        echo '<p class="' . strtolower($row['status']) . '">Status: ' . $row['status'] . '</p>';
+                    }
                 }
+                
 
                 echo '</div>';
             }

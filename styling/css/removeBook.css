@@ -1,0 +1,134 @@
+/* Reset some default styles for consistency */
+body, h1, h2, h3, p, a, ul, li {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f5f5f5;
+}
+
+/* Navigation Bar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #007bff;
+    padding: 10px;
+}
+
+.logo a {
+    color: #fff;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* User Dropdown */
+.user-dropdown {
+    font-size: 24px;
+    position: relative;
+    cursor: pointer;
+}
+
+.circle-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-dropdown .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 45px;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 100px;
+    border-radius: 4px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 8px;
+}
+
+.user-dropdown .dropdown-content a {
+    display: block;
+    color: #000000;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 5px 10px;
+}
+
+.user-dropdown .dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.user-dropdown.active .dropdown-content {
+    display: block;
+}
+/* Book Item */
+.books-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.book-item {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.book-item p {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+.book-item button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.book-item button:hover {
+    background-color: #0056b3;
+}
+
+.book-status {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.books-list .book-item .book-status.available {
+    color: green;
+}
+
+.books-list .book-item .book-status.unavailable {
+    color: red;
+}

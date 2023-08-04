@@ -57,7 +57,7 @@ $sessionData = $_SESSION;
             <i class="fas fa-user-lock"></i>
             <h3>Block a Member</h3>
         </a>
-        <a class="tile" href="remove_book.php">
+        <a class="tile" href="removeBook.php">
             <i class="fas fa-book"></i>
             <h3>Remove a Book</h3>
         </a>
