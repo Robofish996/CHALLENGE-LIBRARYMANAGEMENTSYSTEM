@@ -26,6 +26,9 @@ The books tab should load in all books, from the database and display them, so t
 Unavailable books and books that are already rented out should be filtered out of the list and should NOT be displayed.
 Members should have a limit of five rentals, meaning that they should not be allowed to rent more than five books at a single time.
 
+To Login as Admin please use account
 
+Username: kyla
+Password:1234
 
 
