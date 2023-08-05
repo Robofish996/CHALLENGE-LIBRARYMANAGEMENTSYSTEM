@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the password
 
-    // Database connection (include your connection code here)
+    // Database connection
     $connection = mysqli_connect('localhost', 'Mathew', 'mysql@123', 'crestlibrary');
     if (!$connection) {
         die("Connection failed: " . mysqli_connect_error());

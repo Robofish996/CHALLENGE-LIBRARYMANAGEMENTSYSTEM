@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'librarian') {
     exit;
 }
 
-// Include the common database connection
+//database connection
 $connection = mysqli_connect('localhost', 'Mathew', 'mysql@123', 'crestlibrary');
 if (!$connection) {
     die("Connection failed: " . mysqli_connect_error());
