@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-//Login values
+// Login values
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -16,7 +16,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Prepare the SQL query to fetch the user data based on the username
     $query_members = "SELECT * FROM members WHERE name = '$username'";
     $query_librarians = "SELECT * FROM librarians WHERE name = '$username'";
-
+    print_r($query_librarians); // Debugging: Output the query
+    
     $result_members = mysqli_query($connection, $query_members);
     $result_librarians = mysqli_query($connection, $query_librarians);
 
@@ -28,6 +29,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // User is blocked, show an error message
             $error_message = "You have been blocked. Please contact the administrator for further assistance.";
         } elseif(password_verify($password, $user['password'])) {
+            // Debugging: Output the hashed password from the database and the provided password
+            echo "Hashed Password from DB: " . $user['password'] . "<br>";
+            echo "Provided Password: " . $password . "<br>";
+            
             // Username and password are correct, store the username, role, user ID, and email in the session
             $_SESSION['username'] = $username;
             $_SESSION['role'] = $user['role'];
@@ -45,10 +50,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 exit();
             }
         } else {
+            // Debugging: Output that password verification failed
+            echo "Password verification failed!";
             // Invalid password, show an error message
             $error_message = "Invalid password. Please try again.";
         }
     } else {
+        // Debugging: Output the number of rows returned by the query
+        echo "Rows Returned: " . mysqli_num_rows($result_librarians);
+        
         // User not found in any table, show an error message
         $error_message = "Invalid username or password. Please try again.";
     }
@@ -84,6 +94,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <button type="submit">Login</button>
             </form>
         </div>
-    </div>
-</body>
-</html>
+   
